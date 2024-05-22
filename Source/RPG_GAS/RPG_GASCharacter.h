@@ -4,10 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "AbilitySystemInterface.h"
 #include "RPG_GASCharacter.generated.h"
 
 UCLASS(config=Game)
-class ARPG_GASCharacter : public ACharacter
+class ARPG_GASCharacter : public ACharacter, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
@@ -39,5 +40,10 @@ public:
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "GAS", meta = (AllowPrivateAccess = "true"))
 	class UAbilitySystemComponent* AbilitySystemComponent;
+
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const
+	{
+		return AbilitySystemComponent;
+	}
 };
 
